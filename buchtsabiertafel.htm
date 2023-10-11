@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buchstabierhilfe</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f5f5f5;
+    }
+    h1 {
+        color: #4CAF50;
+    }
+    input, select {
+        width: 300px;
+        padding: 8px;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    table {
+        width: 300px;  /* Feste Breite für die Tabelle festlegen */
+        border-collapse: collapse;
+    }
+    td {
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+    .bold {
+        font-weight: bold;
+    }
+    footer {
+        margin-top: 20px;
+        font-size: 14px;
+    }
+    .container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;  /* Ausrichtung der Items nach rechts */
+        width: 100%;  /* Nutzt die gesamte Breite des Elternelements */
+    }
+    div:first-child {
+        flex-grow: 1;  /* Lässt den ersten div innerhalb des Containers wachsen */
+        margin-right: 20px;  /* Einen rechten Abstand zum Tabellen-Element hinzufügen */
+    }
+    p {
+        word-wrap: break-word;  /* Verhindert, dass der Text außerhalb des Elements verläuft */
+    }
+    .hinweis { 
+               color: red; 
+    }
+</style>
+
+</head>
+<body>
+
+<h1>goerdys Buchstabierhilfe für Sprechfunker</h1>
+<p class="hinweis">Hinweis: Zahlen mit mehr als zwei Stellen werden als Ganzes und nicht ziffernweise buchstabiert.</p>
+<p class="hinweis">Wichtiger Hinweis: Es wird keine Garantie für die Richtigkeit der Buchstabierungen übernommen.</br> Verwenden Sie dieses Tool als Hilfestellung und Überprüfen Sie gegebenenfalls anhand offizieller Quellen.</p>
+
+<div class="container">
+<div>
+<label for="inputText">Geben Sie einen Text ein:</label>
+<input type="text" id="inputText" oninput="buchstabieren()">
+</br>
+<label for="alphabet">Wählen Sie das Alphabet:</label>
+<select id="alphabet" onchange="buchstabieren()">
+    <option value="de">Deutsche Buchstabiertafel</option>
+    <option value="nato">NATO-Alphabet</option>
+</select>
+<p id="output"></p>
+</div>
+<table>
+    <tr><td class="bold">A</td><td>Anton</td><td>Alpha</td></tr>
+    <tr><td class="bold">B</td><td>Berta</td><td>Bravo</td></tr>
+    <tr><td class="bold">C</td><td>Cäsar</td><td>Charlie</td></tr>
+    <tr><td class="bold">D</td><td>Dora</td><td>Delta</td></tr>
+    <tr><td class="bold">E</td><td>Emil</td><td>Echo</td></tr>
+    <tr><td class="bold">F</td><td>Friedrich</td><td>Foxtrot</td></tr>
+    <tr><td class="bold">G</td><td>Gustav</td><td>Golf</td></tr>
+    <tr><td class="bold">H</td><td>Heinrich</td><td>Hotel</td></tr>
+    <tr><td class="bold">I</td><td>Ida</td><td>India</td></tr>
+    <tr><td class="bold">J</td><td>Julius</td><td>Juliett</td></tr>
+    <tr><td class="bold">K</td><td>Konrad</td><td>Kilo</td></tr>
+    <tr><td class="bold">L</td><td>Ludwig</td><td>Lima</td></tr>
+    <tr><td class="bold">M</td><td>Martha</td><td>Mike</td></tr>
+    <tr><td class="bold">N</td><td>Nordpol</td><td>November</td></tr>
+    <tr><td class="bold">O</td><td>Otto</td><td>Oscar</td></tr>
+    <tr><td class="bold">P</td><td>Paula</td><td>Papa</td></tr>
+    <tr><td class="bold">Q</td><td>Quelle</td><td>Quebec</td></tr>
+    <tr><td class="bold">R</td><td>Richard</td><td>Romeo</td></tr>
+    <tr><td class="bold">S</td><td>Siegfried</td><td>Sierra</td></tr>
+    <tr><td class="bold">T</td><td>Theodor</td><td>Tango</td></tr>
+    <tr><td class="bold">U</td><td>Ulrich</td><td>Uniform</td></tr>
+    <tr><td class="bold">V</td><td>Viktor</td><td>Victor</td></tr>
+    <tr><td class="bold">W</td><td>Wilhelm</td><td>Whiskey</td></tr>
+    <tr><td class="bold">X</td><td>Xanthippe</td><td>X-ray</td></tr>
+    <tr><td class="bold">Y</td><td>Ypsilon</td><td>Yankee</td></tr>
+    <tr><td class="bold">Z</td><td>Zeppelin</td><td>Zulu</td></tr>
+    <tr><td class="bold">Ä</td><td>Ärger</td><td>Alpha Echo</td></tr>
+    <tr><td class="bold">Ö</td><td>Ökonom</td><td>Oscar Echo</td></tr>
+    <tr><td class="bold">Ü</td><td>Übermut</td><td>Uniform Echo</td></tr>
+    <tr><td class="bold">ß</td><td>Esszett</td><td>Sierra Sierra</td></tr>
+    <tr><td class="bold">CH</td><td>Charlotte</td><td>Charlie Hotel</td></tr>
+    <tr><td class="bold">SCH</td><td>Schule</td><td>Sierra Charlie Hotel</td></tr>
+</table>
+
+</div>
+
+<footer>
+<p>Dieses Projekt wurde mit Unterstützung von <a href="https://openai.com/">ChatGPT-4</a> erstellt. Der Code ist öffentlich auf GitHub verfügbar: <a href="https://github.com/goerdy/Buchstabiertafel" target="_blank">goerdy/Buchstabiertafel</a>.</p>
+    <!-- Füge das ChatGPT Logo hier ein: -->
+    <!-- <img src="path-to-logo.jpg" alt="ChatGPT Logo"> -->
+</footer>
+<script>
+function buchstabieren() {
+   const deutscheTafel = {
+    a: "Anton", b: "Berta", c: "Cäsar", d: "Dora",
+    e: "Emil", f: "Friedrich", g: "Gustav", h: "Heinrich",
+    i: "Ida", j: "Julius", k: "Konrad", l: "Ludwig",
+    m: "Martha", n: "Nordpol", o: "Otto", p: "Paula",
+    q: "Quelle", r: "Richard", s: "Siegfried", t: "Theodor",
+    u: "Ulrich", v: "Viktor", w: "Wilhelm", x: "Xanthippe",
+    y: "Ypsilon", z: "Zeppelin", ä: "Ärger", ö: "Ökonom",
+    ü: "Übermut", ß: "Esszett", sch: "Schule", ch: "Charlotte",
+    '0': 'Null', '1': 'Eins', '2': 'Zwo', '3': 'Drei',
+    '4': 'Vier', '5': 'Fünf', '6': 'Sechs', '7': 'Sieben',
+    '8': 'Acht', '9': 'Neun', '.': 'Punkt', ',': 'Komma',
+    '-': 'Bindestrich', '_': 'Unterstrich', '/': 'Schrägstrich',
+    ':': 'Doppelpunkt', ';': 'Semikolon', '!': 'Ausrufezeichen',
+    '?': 'Fragezeichen', '@': 'Klammeraffe', '&': 'Und-Zeichen',
+    '%': 'Prozent', '$': 'Dollar', '€': 'Euro', '+': 'Plus',
+    '=': 'Gleich', '*': 'Stern', '#': 'Rautenzeichen'
+};
+
+const natoTafel = {
+    a: "Alpha", b: "Bravo", c: "Charlie", d: "Delta",
+    e: "Echo", f: "Foxtrot", g: "Golf", h: "Hotel",
+    i: "India", j: "Juliett", k: "Kilo", l: "Lima",
+    m: "Mike", n: "November", o: "Oscar", p: "Papa",
+    q: "Quebec", r: "Romeo", s: "Sierra", t: "Tango",
+    u: "Uniform", v: "Victor", w: "Whiskey", x: "X-ray",
+    y: "Yankee", z: "Zulu", ä: "Alpha Echo", ö: "Oscar Echo",
+    ü: "Uniform Echo", ß: "Sierra Sierra", sch: "Sierra Charlie Hotel", ch: "Charlie Hotel",
+    '0': 'Zero', '1': 'Wun', '2': 'Too', '3': 'Tree',
+    '4': 'Fow-er', '5': 'Fife', '6': 'Six', '7': 'Sev-en',
+    '8': 'Ait', '9': 'Nin-er', '.': 'Decimal', ',': 'Comma',
+    '-': 'Dash', '_': 'Underscore', '/': 'Slash',
+    ':': 'Colon', ';': 'Semicolon', '!': 'Exclamation',
+    '?': 'Question', '@': 'At', '&': 'Ampersand',
+    '%': 'Percent', '$': 'Dollar', '€': 'Euro', '+': 'Plus',
+    '=': 'Equals', '*': 'Asterisk', '#': 'Hash'
+};
+    const ausgabe = document.getElementById('output');
+    const inputText = document.getElementById('inputText').value.toLowerCase();
+    const alphabet = document.getElementById('alphabet').value;
+    const tafel = alphabet === 'de' ? deutscheTafel : natoTafel;
+
+    let buchstabiert = "";
+    const worte = inputText.split(" ");
+    for (const wort of worte) {
+        let buchstabiertesWort = `${wort.toUpperCase()}: `;
+        for (let i = 0; i < wort.length; i++) {
+            if(alphabet === 'de' && i < wort.length - 2 && wort.substr(i, 3) === 'sch') {
+                buchstabiertesWort += `${tafel.sch} `;
+                i += 2;
+            } else if(alphabet === 'de' && i < wort.length - 1 && wort.substr(i, 2) === 'ch') {
+                buchstabiertesWort += `${tafel.ch} `;
+                i += 1;
+            } else {
+                buchstabiertesWort += `${tafel[wort[i]]} `;
+            }
+        }
+        buchstabiert += buchstabiertesWort.trim() + '<br>';
+    }
+    ausgabe.innerHTML = buchstabiert;
+}</script>
+
+
+</body>
+</html>
+
